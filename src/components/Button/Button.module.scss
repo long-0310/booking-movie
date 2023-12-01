@@ -1,0 +1,93 @@
+.button {
+  font-family: "Space Grotesk", sans-serif;
+  background: var(--primary);
+  border: 0;
+  display: block;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 12px 25px;
+  width: 100%;
+  // border: 1px solid var(--primary);
+  box-sizing: border-box;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.button:hover {
+  background-color: #000000;
+}
+
+.button:active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.button::first-letter {
+  text-transform: uppercase;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  border: 0;
+  outline: none;
+}
+
+.styleDisable {
+  background: #e0e0e0;
+  color: #00000033;
+
+  &:hover {
+    background: #e0e0e0;
+    color: #00000033;
+  }
+}
+
+i {
+  margin-right: 5px;
+}
+
+.large-btn {
+  padding: 17px 50px;
+}
+
+.primary-btn {
+  background: var(--primary);
+}
+
+.primary-btn:hover {
+  color: #000000;
+
+  background-color: #ffffff;
+}
+
+.second-btn {
+  color: var(--primary);
+  background: #ffffff;
+}
+
+.second-btn:hover {
+  color: white;
+  background-color: var(--primary);
+}
+
+.black-btn {
+  color: white;
+  background-color: #000000;
+}
+
+.black-btn:hover {
+  color: black;
+  background-color: white;
+}

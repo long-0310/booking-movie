@@ -1,0 +1,114 @@
+.ticket-icon-box {
+  position: relative;
+}
+.ticket-box {
+  padding: 25px 25px 25px 45px;
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
+  background-color: #000;
+}
+
+.content {
+  display: inline-block;
+  margin: 20px 0;
+  width: 230px;
+  position: relative;
+  @media screen and (min-width: 1025px) and (max-width: 1480px) {
+    display: block;
+  }
+  @media (max-width: 380px) {
+    display: block;
+  }
+}
+.icon {
+  float: right;
+  @media screen and (min-width: 1025px) and (max-width: 1480px) {
+    float: left;
+  }
+  @media (max-width: 380px) {
+    float: left;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.2;
+  color: #fff;
+  white-space: pre-line;
+
+  @media screen and (min-width: 1025px) and (max-width: 1480px) {
+    font-size: 32px;
+  }
+  @media (max-width: 767px) {
+    font-size: 25px;
+  }
+}
+.sub-title {
+  color: #737373;
+  font-size: 16px;
+}
+
+.icon {
+  position: relative;
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+
+  @media (max-width: 1480px) {
+    width: 100px;
+    height: 100px;
+  }
+  @media (max-width: 767px) {
+    width: 90px;
+    height: 90px;
+  }
+
+  i {
+    display: inline-flex;
+    font-size: 64px;
+    color: #fff;
+
+    @media (max-width: 1480px) {
+      font-size: 55px;
+    }
+    @media (max-width: 767px) {
+      font-size: 40px;
+    }
+  }
+}
+
+.background {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: ease-in-out 0.3s;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.background:hover {
+  transform: scale(1.1);
+}

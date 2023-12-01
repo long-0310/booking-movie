@@ -1,0 +1,114 @@
+:root {
+  --primary: #d96c2c;
+  --heading: #000000;
+  --text: #737373;
+  --light: #e0e0e0;
+  --error: #ff0000;
+  --primary-font: Space Grotesk;
+  --font-size: 16px;
+  --line-height: 1.86em;
+  --letter-spacing: 0px;
+  --secondary-font: Space Grotesk;
+  --width-sidebar: 370px;
+  --main-content: calc(100% - 370px);
+  --container-width: 1190px;
+  --boxed-offset: 20px;
+  --woo-layout: layout_1c;
+  --woo-width-sidebar: 320px;
+  --woo-main-content: calc(100% - 320px);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+// html {
+// 	font-size: 62.5%;
+// }
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9375rem;
+  color: #1f1f1f;
+  background-color: #f7f7f7;
+  min-height: 100%;
+  text-rendering: optimizeSpeed;
+  overflow-y: overlay;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", sans-serif;
+  margin-top: 0;
+  font-weight: 500;
+}
+
+h1,
+.h1 {
+  font-size: 2.25rem;
+}
+
+h2,
+.h2 {
+  font-size: 1.875rem;
+}
+
+h3,
+.h3 {
+  font-size: 1.5rem;
+}
+
+h4,
+.h4 {
+  font-size: 1.125rem;
+}
+
+h5,
+.h5 {
+  font-size: 0.875rem;
+}
+
+h6,
+.h6 {
+  font-size: 0.75rem;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+// Custom scroll bar
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+table > thead > tr > th > span {
+  position: relative;
+  cursor: pointer;
+  min-width: 150px;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}

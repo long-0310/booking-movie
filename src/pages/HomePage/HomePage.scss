@@ -1,0 +1,388 @@
+@import "../../scss/mixin";
+
+.main-home-page {
+  height: 900px;
+  .slide-home-page {
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+}
+
+.elementor-element {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.elementor-element-inside {
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  @media (max-width: 1180px) {
+    padding: 0px 16px;
+  }
+}
+.bottom-ticket-box {
+  padding: 110px 0 110px 0;
+  max-width: 1190px;
+  margin: 0 auto;
+  @media (max-width: 1180px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.elementor-background-overlay {
+  background-image: url(https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/big-bg-film.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  opacity: 0.03;
+  mix-blend-mode: luminosity;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: var(--primary);
+}
+.slick-dots li button:before {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.elementor-element .slick-slide > div {
+  margin: 0 16px !important;
+}
+
+/* the parent */
+.elementor-element .slick-list {
+  margin: 0 -16px;
+}
+
+.documentary {
+  background-color: transparent;
+  position: relative;
+  background-image: linear-gradient(90deg, #000000 0%, #ffffff 100%);
+  transition: all 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+  padding: 110px 0px 110px 0px;
+  .elementor-background-overlay-documentary {
+    background-image: url(https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/background-documentary-home1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.3s, border-radius 0.3s, opacity 0.3s;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  .documentary-box {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    max-width: 1190px;
+    width: 100%;
+    @media (max-width: 1180px) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .documentary-description {
+      margin: 22px 0 0 0;
+      color: #999999;
+      margin: 32px 0;
+    }
+    .documentary-award-box {
+      display: flex;
+      gap: 16px;
+      .documentary-award {
+        width: auto;
+        margin: 12px 20px 40px 0px;
+        max-width: 100%;
+        img {
+          opacity: 0.5;
+          vertical-align: middle;
+          display: inline-block;
+          height: auto;
+          max-width: 100%;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+    }
+    .documentary-award-btn {
+      width: 240px;
+    }
+    .documentary-right {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      width: 100%;
+      flex-wrap: wrap;
+      padding: 10px;
+      .documentary-video {
+        width: auto;
+        position: relative;
+        max-width: 100%;
+        .documentary-video-container {
+          transition: all 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+          .documentary-ova-video .text {
+            font-family: "Covered By Your Grace", Sans-serif;
+            transition: all 0.3s linear;
+            -moz-transition: all 0.3s linear;
+            -webkit-transition: all 0.3s linear;
+            -o-transition: all 0.3s linear;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            color: #fff;
+            font-size: 24px;
+            line-height: 1.2;
+          }
+          .documentary-ova-video {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            .icon-content-view {
+              display: inline-block;
+              @media (max-width: 1180px) {
+                padding-right: 48px;
+              }
+              &.no-animation {
+                .video-btn {
+                  &:before,
+                  &:after {
+                    animation: none;
+                  }
+                }
+              }
+
+              .video-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                width: 140px;
+                height: 140px;
+
+                &:hover {
+                  cursor: pointer;
+
+                  &:before {
+                    @include transaction(all, 0.3s, linear);
+                    background-color: #fff;
+                  }
+
+                  i {
+                    @include transaction(all, 0.3s, linear);
+                    color: var(--primary);
+                  }
+
+                  &:after {
+                    @include transaction(all, 0.3s, linear);
+                    background-color: rgba(255, 255, 255, 0.05);
+                  }
+                }
+
+                &:before {
+                  @include transaction(all, 0.3s, linear);
+                  position: absolute;
+                  content: "";
+                  top: 50%;
+                  left: 50%;
+                  border-radius: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 71%;
+                  height: 71%;
+                  background-color: var(--primary);
+                  z-index: 1;
+                  animation: lineScale 2.5s linear infinite;
+                }
+
+                i {
+                  @include transaction(all, 0.3s, linear);
+                  font-size: 24px;
+                  display: inline-flex;
+                  color: #fff;
+                  z-index: 2;
+                }
+
+                &:after {
+                  @include transaction(all, 0.3s, linear);
+                  position: absolute;
+                  content: "";
+                  top: 50%;
+                  left: 50%;
+                  border-radius: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 100%;
+                  height: 100%;
+                  background-color: rgba(255, 255, 255, 0.1);
+                  z-index: 0;
+                  animation: lineScale 2.5s linear infinite;
+                }
+              }
+            }
+            .image-arrow {
+              top: 180px;
+              right: 180px;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.audio_content {
+  position: relative;
+  margin: 100px auto;
+  width: 120px;
+}
+
+.audio_content::after,
+.audio_content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  -webkit-animation: sploosh 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-animation-iteration-count: infinite;
+}
+
+.audio_content::before {
+  -webkit-animation-delay: 0.33s;
+  -webkit-animation-duration: 2.2s;
+}
+
+.audio_content svg {
+  border: 0;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  background-color: rgb(217, 107, 43);
+  -webkit-animation: pulse 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes sploosh {
+  0% {
+    box-shadow: 0 0 0 0px rgba(217, 107, 43, 0.7);
+    background: rgba(217, 107, 43, 0.7);
+  }
+
+  80% {
+    background: rgba(66, 166, 223, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 80px rgba(66, 166, 223, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+  }
+
+  3.3% {
+    -webkit-transform: scale(1.1);
+  }
+
+  16.5% {
+    -webkit-transform: scale(1);
+  }
+
+  33% {
+    -webkit-transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+.ticket-homepage-box {
+  position: relative;
+  .ticket-homepage {
+    margin: 64px auto;
+    position: relative;
+    max-width: 1190px;
+    width: 100%;
+    @media (max-width: 1180px) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .ticket-homepage-box-2 {
+      position: relative;
+      background-color: var(--primary);
+      .ticket-homepage-content {
+        width: 100%;
+        align-content: center;
+        align-items: center;
+        background-image: url(https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/background-reel-cta-1.png);
+        background-position: -70px 0px;
+        background-repeat: no-repeat;
+        background-size: auto;
+        justify-content: space-between;
+        transition: all 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+        padding: 63px 60px 63px 70px;
+        z-index: -3;
+        display: flex;
+        flex-wrap: wrap;
+        .ticket-homepage-overlay {
+          z-index: 0;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          background-image: url(https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/bg-discount-for-student.png);
+          background-position: center center;
+          background-repeat: no-repeat;
+          opacity: 0.6;
+          mix-blend-mode: luminosity;
+          transition: all 0.3s, border-radius 0.3s, opacity 0.3s;
+          @media (max-width: 980px) {
+            background-size: cover;
+          }
+        }
+        .ticket-homepage-title {
+          color: #ffffff;
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 1.2em;
+          width: auto;
+          z-index: 1;
+          margin-bottom: 24px;
+        }
+        .ticket-homepage-btn {
+          z-index: 1;
+        }
+      }
+    }
+  }
+}

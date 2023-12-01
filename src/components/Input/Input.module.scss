@@ -1,0 +1,43 @@
+.input-wrapper {
+  .input-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    .input-label {
+      color: var(--error);
+    }
+  }
+
+  .input-styles {
+    padding: 12px 15px;
+    border-color: #e0e0e0;
+    color: var(--text);
+    border-width: 1px;
+    border-style: solid;
+    width: 100%;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    font-weight: normal;
+    outline: 0;
+    transition: all ease-in-out 0.3s;
+    font-size: 1em;
+    &::placeholder {
+      color: var(--text);
+    }
+    &:focus {
+      color: var(--heading);
+    }
+    .form-light & {
+      color: #fff;
+      &::placeholder {
+        color: #fff;
+      }
+    }
+  }
+
+  .error-text {
+    margin-top: 8px;
+    color: var(--error);
+  }
+}

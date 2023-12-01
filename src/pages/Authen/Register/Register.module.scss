@@ -1,0 +1,80 @@
+@import "../../../scss/Responsive.scss";
+
+.account-page {
+  font-family: "Space Grotesk", sans-serif;
+  color: #1f1f1f;
+  background-image: url("../../../assets/images/background-login.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  .account-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    @include x-small {
+      flex-direction: column;
+    }
+    .account-box {
+      padding: 20px 0;
+
+      .account-container {
+        width: 100%;
+        padding: 0 15px;
+        margin: 0 auto;
+
+        .account-content {
+          color: white;
+          background-color: rgba(0, 0, 0, 0.9);
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+          margin: 0 auto;
+          overflow: hidden;
+          width: 480px;
+          @include x-small {
+            width: 100%;
+            margin-bottom: 20px;
+          }
+          .content-inside {
+            padding: 30px;
+            @include x-small {
+              padding: 30px 16px;
+            }
+            .account-title {
+              font-size: 26px;
+              font-weight: 500;
+              margin-bottom: 5px;
+              text-align: center;
+            }
+            .account-subtitle {
+              color: #b0b0b0;
+              font-size: 18px;
+              margin-bottom: 30px;
+              text-align: center;
+            }
+            .label {
+              margin-bottom: 25px;
+              p {
+                margin: 0;
+              }
+              .forgot-password {
+                color: #ffffff;
+                font-size: 15px;
+                &:hover {
+                  text-decoration: none;
+                }
+              }
+            }
+            .btn-submit {
+              height: 53px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

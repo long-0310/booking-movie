@@ -1,0 +1,12 @@
+.elementor-widget-container {
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  object-fit: cover;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+    transform var(--e-transform-transition-duration, 0.4s);
+  img {
+    width: 100%;
+  }
+}
