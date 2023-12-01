@@ -23,15 +23,15 @@ function App() {
     <>
       <Router>
         <Routes>
-          {/* <Route
+          <Route
             path="/*"
             element={
               <PrivateRoute>
                 <Protected />
               </PrivateRoute>
             }
-          /> */}
-          <Route path="/*" element={<Protected />} />
+          />
+          {/* <Route path="/*" element={<Protected />} /> */}
           <Route path="/dang-nhap" element={<Login />} />
           <Route path="/quen-mat-khau" element={<ForgotPassword />} />
           <Route path="/dang-ki" element={<Register />} />
