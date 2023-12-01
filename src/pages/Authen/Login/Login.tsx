@@ -36,6 +36,11 @@ const Login: React.FC = () => {
   })
 
   const onSubmit = (data: any) => {
+    const randomString =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+
+    localStorage.setItem("accessToken", randomString)
     navigate("/")
   }
 

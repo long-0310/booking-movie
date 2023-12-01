@@ -4,8 +4,8 @@ import { withCookies } from "react-cookie"
 function PrivateRoute(props: any) {
   const { children } = props
   const isLoggedIn = !!localStorage.getItem("accessToken")
-  // return !!isLoggedIn ? children : <Navigate to="/dang-ki" />
-  return children
+  return !!isLoggedIn ? children : <Navigate to="/dang-nhap" />
+  // return children
 }
 
 export default withCookies(PrivateRoute)

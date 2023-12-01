@@ -36,6 +36,11 @@ const Register = () => {
     resolver: yupResolver(SignupSchema),
   })
   const onSubmit = (data: any) => {
+    const randomString =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+
+    localStorage.setItem("accessToken", randomString)
     navigate("/")
   }
 
@@ -87,7 +92,7 @@ const Register = () => {
                   <div className={cx("label")}>
                     <div className={cx("account-password")}>
                       Đã có tài khoản ?&nbsp;
-                      <Link to={"/dang-ki"} className={cx("forgot-password")}>
+                      <Link to={"/dang-nhap"} className={cx("forgot-password")}>
                         {" "}
                         Đăng nhập
                       </Link>
