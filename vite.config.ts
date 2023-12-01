@@ -8,8 +8,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: "build",
-    sourcemap: true,
+    outDir: "../dist",
   },
   test: {
     globals: true,
