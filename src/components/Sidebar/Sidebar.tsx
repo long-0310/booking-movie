@@ -6,9 +6,16 @@ type SlideProps = {
   imageUrl: string
   category: string
   name: string
+  setShowOption?: React.Dispatch<React.SetStateAction<boolean>>
   description: string
 }
-const Sidebar = ({ imageUrl, category, name, description }: SlideProps) => {
+const Sidebar = ({
+  imageUrl,
+  category,
+  name,
+  description,
+  setShowOption,
+}: SlideProps) => {
   const cx = classNames.bind(styles)
   return (
     <div className={cx("side-bar")}>
@@ -31,10 +38,13 @@ const Sidebar = ({ imageUrl, category, name, description }: SlideProps) => {
             <p className={cx("movie-excerpt")}>{description}</p>
             <div className={cx("button-wrapper")}>
               <div className={cx("left-button")}>
-                <Button largeBtn secondBtn label="Xem thông tin" />
+                <Button largeBtn secondBtn label="Information" />
               </div>
-              <div className={cx("left-button")}>
-                <Button largeBtn primaryBtn label="Xem thông tin" />
+              <div
+                className={cx("left-button")}
+                onClick={() => setShowOption && setShowOption(true)}
+              >
+                <Button largeBtn primaryBtn label="Get Ticket" />
               </div>
             </div>
           </div>

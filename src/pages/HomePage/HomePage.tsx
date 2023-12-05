@@ -6,87 +6,96 @@ import BoxIcon from "../../components/BoxIcon/BoxIcon"
 import MovieItem from "../../components/MovieItem/MovieItem"
 import HeadingContent from "../../components/HeadingContent/HeadingContent"
 import Button from "../../components/Button"
+import MoviePopup from "../../components/MoviePopup"
+import { useState } from "react"
+
+const settingSlickFilm = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  arrows: false,
+  autoplay: false,
+  autoplaySpeed: 2000,
+  draggable: true,
+  responsive: [
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+      },
+    },
+  ],
+}
+
+const dataSlice = [
+  {
+    name: "Wrong Turn Part 2",
+    imageUrl:
+      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner.jpg",
+    category: "Thriller Movie",
+    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
+  },
+  {
+    name: "The Witcher Session 2",
+    imageUrl:
+      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/banner-02.jpg",
+    category: "Action Movie",
+    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
+  },
+  {
+    name: "Love Nightmare",
+    imageUrl:
+      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner3.jpg",
+    category: "Action Movie",
+    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
+  },
+]
+
+const dataIconBox = [
+  {
+    title: "Upcoming Film Festivals",
+    subTitle: "Join Now",
+  },
+  {
+    title: "Watch Film Awards",
+    subTitle: "Watch Now",
+  },
+  {
+    title: "Comedy TV Shows",
+    subTitle: "Get Ticket",
+  },
+]
+
+const settingSlick = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 2000,
+}
 
 const HomePage = () => {
-  const settingSlick = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  }
+  const [isBookingPopup, setIsBookingPopup] = useState(false)
 
-  const settingSlickFilm = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    arrows: false,
-    autoplay: false,
-    autoplaySpeed: 2000,
-    draggable: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-    ],
+  const handleBookingPopup = () => {
+    setIsBookingPopup(!isBookingPopup)
   }
-
-  const dataSlice = [
-    {
-      name: "Wrong Turn Part 2",
-      imageUrl:
-        "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner.jpg",
-      category: "Thriller Movie",
-      description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-    },
-    {
-      name: "The Witcher Session 2",
-      imageUrl:
-        "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/banner-02.jpg",
-      category: "Action Movie",
-      description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-    },
-    {
-      name: "Love Nightmare",
-      imageUrl:
-        "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner3.jpg",
-      category: "Action Movie",
-      description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-    },
-  ]
-  const dataIconBox = [
-    {
-      title: "Upcoming Film Festivals",
-      subTitle: "Join Now",
-    },
-    {
-      title: "Watch Film Awards",
-      subTitle: "Watch Now",
-    },
-    {
-      title: "Comedy TV Shows",
-      subTitle: "Get Ticket",
-    },
-  ]
 
   return (
     <>
@@ -96,6 +105,7 @@ const HomePage = () => {
             {dataSlice.map((item: any) => (
               <div>
                 <Sidebar
+                  setShowOption={setIsBookingPopup}
                   name={item.name}
                   category={item.category}
                   imageUrl={item.imageUrl}
@@ -127,7 +137,7 @@ const HomePage = () => {
             <div className="slick-movie-item">
               <Slider {...settingSlickFilm}>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                  <MovieItem />
+                  <MovieItem handleMovieBooking={handleBookingPopup} />
                 ))}
               </Slider>
             </div>
@@ -243,6 +253,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      {isBookingPopup && <MoviePopup setShowOption={setIsBookingPopup} />}
     </>
   )
 }

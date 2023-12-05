@@ -5,6 +5,7 @@ import HomePage from "../../pages/HomePage"
 import Header from "../Header"
 import { Route, Routes } from "react-router-dom"
 import Footer from "../Footer"
+import MovieDetail from "../../pages/MovieDetail"
 
 const Protected = () => {
   const cx = classNames.bind(styles)
@@ -15,6 +16,11 @@ const Protected = () => {
     {
       path: "*",
       component: <HomePage />,
+      isView: true,
+    },
+    {
+      path: "/movie",
+      component: <MovieDetail />,
       isView: true,
     },
   ]

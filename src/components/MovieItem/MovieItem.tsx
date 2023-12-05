@@ -1,9 +1,14 @@
 import "./MovieItem.scss"
-
-const MovieItem = () => {
+interface MovieItemProps {
+  handleMovieBooking?: any
+}
+const MovieItem = ({ handleMovieBooking }: MovieItemProps) => {
   return (
-    <div className="mb-movie-item item-template1">
-      <a href="/" title="The Fifth Day">
+    <div
+      className="mb-movie-item item-template1"
+      onClick={() => handleMovieBooking()}
+    >
+      <a title="The Fifth Day">
         <div className="movie-image">
           <img
             decoding="async"

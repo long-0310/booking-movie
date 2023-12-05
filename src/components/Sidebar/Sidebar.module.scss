@@ -113,6 +113,17 @@
           display: flex;
           max-width: 440px;
           justify-content: space-between;
+          gap: 16px;
+          .left-button {
+            width: 50%;
+          }
+          @media (max-width: 767px) {
+            flex-wrap: wrap;
+
+            .left-button {
+              width: 100%;
+            }
+          }
         }
       }
     }

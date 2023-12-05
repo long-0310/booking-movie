@@ -1,0 +1,369 @@
+.movie-detail {
+  .movie-detail-hero {
+    position: relative;
+    .movie-detail-background-overlay {
+      background-image: url(https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/background-header-2.jpg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 1;
+      transition: all 0.3s, border-radius 0.3s, opacity 0.3s;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+    .movie-detail-container {
+      display: flex;
+      margin-right: auto;
+      margin-left: auto;
+      position: relative;
+      justify-content: center;
+      .cover_color {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #00000080;
+      }
+      .header_banner_el {
+        padding-top: 310px;
+        padding-bottom: 180px;
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-align: center;
+        @media (max-width: 1180px) {
+          padding-top: 260px;
+          padding-bottom: 160px;
+        }
+      }
+
+      .header_title {
+        margin: 0;
+        padding: 0;
+        font-size: 50px;
+        text-transform: capitalize;
+        line-height: 1em;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .ova_movie_single {
+    max-width: 1190px;
+    margin: 110px auto;
+    @media (max-width: 1180px) {
+      padding: 0px 16px;
+    }
+
+    .top-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+
+      .movie-title {
+        margin: 0 0 8px 0;
+        font-size: 34px;
+      }
+
+      .categories-and-time {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        line-height: 1.3;
+      }
+
+      .movie-category {
+        a {
+          color: var(--text);
+          &:hover {
+            color: var(--primary);
+          }
+        }
+      }
+
+      .btn-custom-link {
+        font-size: 15px;
+        border-radius: 0;
+        padding: 17px 51px;
+      }
+      .btn-booking {
+        padding: 0;
+        width: 260px;
+      }
+    }
+
+    .movie-media {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+      @media (max-width: 1024px) {
+        flex-direction: column-reverse;
+      }
+
+      .gallery-fancybox {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          opacity: 0.25;
+        }
+      }
+
+      .movie-gallery {
+        width: 100%;
+        max-width: 367px;
+        @media (max-width: 1024px) {
+          max-width: 100%;
+        }
+        &.gallery_blur {
+          position: relative;
+
+          .gallery-fancybox {
+            .blur-bg {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 22px;
+              line-height: 1.2;
+              color: #fff;
+            }
+          }
+        }
+
+        &.gallery_hidden {
+          display: none;
+        }
+      }
+
+      .movie-featured-image {
+        position: relative;
+        width: 100%;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 517px;
+        object-fit: cover;
+        @media (max-width: 767px) {
+          height: 247px;
+        }
+      }
+
+      .btn-trailer-video-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .btn-trailer-video {
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        width: 100px;
+        background-color: transparent;
+        @media (max-width: 767px) {
+          width: 68px;
+          height: 68px;
+        }
+        &:before {
+          transition: all 0.3s linear;
+          cursor: pointer;
+          position: absolute;
+          content: "";
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          height: 100%;
+          background-color: var(--primary);
+          z-index: 1;
+          animation: lineScale 2.5s linear infinite;
+        }
+        &:after {
+          transition: all 0.3s linear;
+          cursor: pointer;
+          position: absolute;
+          content: "";
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          width: 140%;
+          height: 140%;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: -1;
+          animation: lineScale 2.5s linear infinite;
+        }
+        i {
+          transition: all 0.3s ease;
+          display: inline-flex;
+          font-size: 24px;
+          color: #fff;
+          z-index: 1;
+        }
+
+        &:hover {
+          &:before {
+            transition: all 0.3s linear;
+            background-color: #fff;
+          }
+          i {
+            transition: all 0.3s ease;
+            color: var(--primary);
+          }
+        }
+      }
+
+      .text-trailer {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+        position: absolute;
+        bottom: 29%;
+        right: 52%;
+        font-family: "Covered By Your Grace";
+        font-size: 24px;
+        line-height: 1.4;
+        color: #fff;
+        @media (max-width: 767px) {
+          font-size: 16px;
+          bottom: 15%;
+        }
+        i {
+          margin: 0 0 12px 12px;
+          display: inline-flex;
+          font-size: 18px;
+          transform: rotate(-15deg);
+          @media (max-width: 767px) {
+            font-size: 16px;
+            margin: 0 0 8px 8px;
+          }
+        }
+      }
+    }
+
+    .info-list {
+      margin: 0 0 35px 0;
+      padding: 0 0 35px 0;
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 0.25fr 0.25fr;
+      column-gap: 80px;
+      row-gap: 10px;
+      border-bottom: 1px solid var(--light);
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 0.5fr 0.5fr;
+      }
+      @media (max-width: 767px) {
+        grid-template-columns: auto;
+      }
+
+      .item {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        .title {
+          min-width: 33%;
+          color: #000;
+          margin: 0;
+          font-weight: 600;
+          font-size: 18px;
+        }
+        .value {
+          line-height: 1.3;
+        }
+      }
+    }
+
+    .movie-title-h2 {
+      margin: 0 0 22px 0;
+      font-size: 30px;
+      &.cast-title {
+        margin-bottom: 30px;
+      }
+    }
+
+    .movie-cast,
+    .movie-related {
+      margin-bottom: 47px;
+    }
+  }
+}
+.mb-movie-cast-list {
+  display: grid;
+  gap: 30px;
+
+  &.three_column {
+    grid-template-columns: 1fr 1fr 1fr;
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 567px) {
+      grid-template-columns: auto;
+    }
+  }
+  &.four_column {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 567px) {
+      grid-template-columns: auto;
+    }
+  }
+
+  .movie-cast-item {
+    display: flex;
+    align-items: center;
+
+    .cast-thumbnail {
+      margin-right: 20px;
+      img {
+        display: block;
+        width: 100px;
+        min-width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .cast-info {
+      .cast-name {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.3;
+      }
+      .cast-description {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}

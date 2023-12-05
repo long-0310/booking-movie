@@ -14,32 +14,32 @@ const Header = () => {
 
   const menuItem = [
     {
-      label: "Trang chủ",
+      label: "Home",
       to: "/",
       id: 1,
       active: true,
       //   isView: authUser.role !== "User",
     },
     {
-      label: "Phim",
+      label: "Movies",
       to: "/dang-nhap",
       id: 2,
       //   isView: authUser.role !== "User",
     },
     {
-      label: "Khuyến mãi",
+      label: "Discount",
       to: "/khuyen-mai",
       id: 3,
       //   isView: authUser.role !== "User",
     },
     {
-      label: "Tạp chí",
+      label: "Blogs",
       to: "/tap-chi",
       id: 4,
       //   isView: authUser.role !== "User",
     },
     {
-      label: "Liên hệ",
+      label: "Contact",
       to: "/lien-he",
       id: 5,
       //   isView: authUser.role !== "User",

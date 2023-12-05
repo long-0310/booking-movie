@@ -5,7 +5,10 @@
   transition: all 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
   padding: 30px 40px 30px 40px;
   z-index: 9999;
-  position: sticky;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   color: white;
   &.scrolled {
     position: fixed;
@@ -85,6 +88,8 @@
       display: flex;
       align-items: center;
       font-size: 24px;
+      width: 14%;
+      justify-content: flex-end;
       color: white;
       transition: all 0.2s;
     }
@@ -238,4 +243,8 @@
       }
     }
   }
+}
+
+.nav-list {
+  margin: 0px;
 }
