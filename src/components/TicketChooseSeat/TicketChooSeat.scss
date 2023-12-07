@@ -1,0 +1,116 @@
+.bookingSeat {
+  .bookTicketMovie--screen {
+    width: 100%;
+  }
+  .bookTicketMovie--screen img {
+    width: 100%;
+  }
+  .bookTicketMovie--seats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px 50px 50px;
+  }
+  .bookTicketMovie--seat {
+    color: #3f464b;
+    font-size: 23px;
+    max-width: 6% !important;
+    width: 6% !important;
+  }
+  .bookTicketMovie--seat i {
+    cursor: pointer;
+  }
+  .bookTicketMovie--seats .normal,
+  .bookTicketMovie--tutorial-normal {
+    color: #3f464b;
+  }
+  .bookTicketMovie--seats .vip,
+  .bookTicketMovie--tutorial-vip {
+    color: #2f87b6;
+  }
+  .bookTicketMovie--seats .sold,
+  .bookTicketMovie--tutorial-sold {
+    color: #999 !important;
+  }
+  .bookTicketMovie--seats .sold i {
+    cursor: not-allowed;
+  }
+  .bookTicketMovie--seats .active,
+  .bookTicketMovie--tutorial-active {
+    color: var(--primary);
+  }
+  .bookTicketMovie--tutorials.row {
+  }
+  .bookTicketMovie--tutorial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bookTicketMovie--tutorial i {
+    font-size: 20px;
+  }
+  .bookTicketMovie--tutorial__text {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .bookTicketMovie--right {
+    background: #ffffff9d;
+    padding: 30px !important;
+    margin-bottom: 50px;
+    height: 100%;
+    filter: drop-shadow(22px 20px 15px black);
+  }
+  .bookTicketMovie--img img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .bookTicketMovie--right_list {
+    margin-bottom: 5px;
+  }
+
+  .bookTicketMovie--infoTheater {
+    margin: 20px 0;
+  }
+  .bookTicketMovie--right_list .detailPage--info__detail-left {
+    color: #555;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .bookTicketMovie--right_list .detailPage--info__detail-right {
+    color: #222;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .bookTicketMovie--price .detailPage--info__detail-right {
+    font-size: 20px;
+  }
+  .bookTicketMoviePage--title {
+    font-size: 17px;
+    padding-left: 7px;
+    border-left: 2px solid var(--primary);
+    margin-bottom: 15px;
+    color: var(--primary);
+  }
+  .bookTicketMovie--countdown__time {
+    color: var(--primary);
+  }
+  .detailPage--info__detail-seats {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: flex-end;
+  }
+  .detailPage--info__detail-price {
+    font-size: 30px !important;
+    color: var(--color-main2) !important;
+  }
+  .bookTicketMovie--price {
+    margin-top: 25px;
+  }
+
+  .is-choice {
+    color: var(--primary) !important;
+  }
+}

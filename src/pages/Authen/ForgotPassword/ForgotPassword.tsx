@@ -8,13 +8,13 @@ import Button from "../../../components/Button"
 import Input from "../../../components/Input"
 import styles from "./ForgotPassword.module.scss"
 
+const cx = classNames.bind(styles)
 const SignupSchema = yup.object().shape({
   email: yup
     .string()
     .email("Email không hợp lệ")
     .required("Vui lòng nhập email"),
 })
-const cx = classNames.bind(styles)
 
 const ForgotPassword = () => {
   const {

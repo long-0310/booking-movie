@@ -38,7 +38,9 @@ const Sidebar = ({
             <p className={cx("movie-excerpt")}>{description}</p>
             <div className={cx("button-wrapper")}>
               <div className={cx("left-button")}>
-                <Button largeBtn secondBtn label="Information" />
+                <Link to="/movie">
+                  <Button largeBtn secondBtn label="Information" />
+                </Link>
               </div>
               <div
                 className={cx("left-button")}

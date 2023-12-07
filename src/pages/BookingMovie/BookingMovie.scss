@@ -1,0 +1,462 @@
+.booking-movie {
+  .cart-sidebar {
+    flex: 0 0 360px;
+
+    .cart-info {
+      box-shadow: 0px 10px 40px 0px rgba(6, 22, 58, 0.1);
+
+      .wp-cart-info {
+        padding: 15px;
+
+        .cart_title {
+          margin: 0;
+          padding-top: 0;
+          padding-bottom: 9px;
+          font-size: 14px;
+          line-height: 1.2;
+          color: #333;
+          font-weight: 600;
+          border-bottom: 3px solid #ccc;
+          text-transform: uppercase;
+          margin-bottom: 30px;
+          .title {
+            color: black;
+          }
+        }
+
+        .content-cart-info {
+          padding-top: 4px;
+
+          .placeholder {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.2;
+            font-style: italic;
+            padding-bottom: 30px;
+          }
+
+          .item-info {
+            display: flex;
+            justify-content: space-between;
+
+            &.item-header {
+              display: none;
+              border-bottom: 1px dashed #bbb;
+              padding: 7px 0 12px 0;
+
+              span {
+                font-size: 14px;
+                line-height: 22px;
+                color: #666;
+                font-weight: 600;
+              }
+            }
+
+            &:not(:last-child) {
+              border-bottom: 1px dashed #bbb;
+              padding: 12px 0;
+            }
+
+            &:last-child {
+              padding-bottom: 32px;
+              padding-top: 12px;
+            }
+
+            .info-type-ticket {
+              .wp-seat-info {
+                display: flex;
+                flex-wrap: wrap;
+
+                span {
+                  font-size: 14px;
+                  line-height: 22px;
+                  color: #90ba3e;
+
+                  &:not(:last-child):after {
+                    content: "|";
+                    padding: 0 5px;
+                  }
+                }
+              }
+            }
+
+            .info-sub-price {
+              text-align: right;
+            }
+
+            &.area-item {
+              align-items: center;
+
+              .info-type-ticket {
+                flex: 0 0 30%;
+              }
+              .info-qty-ticket {
+                flex: 0 0 40%;
+              }
+              .info-sub-price {
+                flex: 0 0 30%;
+              }
+
+              .area-name {
+                font-size: 14px;
+                line-height: 22px;
+                color: #90ba3e;
+              }
+
+              .info-qty-ticket {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid #e0e0e0;
+                  display: inline-flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: #666;
+                  font-size: 14px;
+
+                  &.area-minus,
+                  &.area-plus {
+                    cursor: pointer;
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                      background-color: #e6e6e6;
+                    }
+
+                    &.disable {
+                      cursor: not-allowed;
+                      opacity: 0.3;
+
+                      & + span.area-qty {
+                        border-color: rgba(204, 204, 204, 0.3);
+                      }
+
+                      &:hover {
+                        background-color: initial;
+                      }
+                    }
+                  }
+
+                  &:first-child {
+                    border-right: 0;
+                  }
+                  &:last-child {
+                    border-left: 0;
+                  }
+
+                  i {
+                    font-size: 17px;
+                    line-height: 0;
+                  }
+                }
+              }
+            }
+          }
+
+          .wp-content-item {
+          }
+
+          .cart-fee {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+
+            &.total-discount {
+              display: none;
+
+              p {
+                margin: 0px;
+                font-size: 14px;
+                line-height: 22px;
+                color: #e86c60;
+              }
+            }
+
+            &.total-tax,
+            &.ticket-fee {
+              border-top: 1px dashed #bbb;
+              padding: 10px 0 5px 0;
+            }
+
+            &.total-tax {
+              display: none;
+
+              p {
+                margin: 0px;
+                font-size: 14px;
+                line-height: 22px;
+                color: #666;
+              }
+            }
+
+            &.ticket-fee {
+              display: none;
+
+              p {
+                margin: 0px;
+                font-size: 14px;
+                line-height: 22px;
+                color: #666;
+              }
+            }
+          }
+        }
+      }
+
+      .total-cart-info {
+        background-color: #666;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+
+        span {
+          color: #fff;
+          font-size: 14px;
+          line-height: 22px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .cart-discount {
+      margin-top: 20px;
+
+      .cart-discount-btn {
+        display: block;
+        font-size: 14px;
+        line-height: 22px;
+        color: #333;
+        padding: 10px 0;
+        width: 100%;
+        border: 2px dashed #c7c7c7;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #e86c60;
+        }
+      }
+
+      .form-discount {
+        display: none;
+        position: relative;
+        flex-wrap: wrap;
+
+        .input-discount-code {
+          position: relative;
+          width: calc(100% - 110px);
+
+          .discount-code {
+            font-size: 14px;
+            color: #333;
+            width: 100%;
+            border: 1px solid #828181;
+            border-radius: 0;
+            height: 40px;
+            padding: 0 10px;
+          }
+
+          i {
+            display: none;
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            line-height: 1;
+            font-size: 16px;
+            margin-top: -10px;
+
+            &:before {
+              animation: mb_loading 2s linear infinite;
+            }
+          }
+        }
+
+        .cart-discount-submit-code {
+          width: 100px;
+          height: 40px;
+          margin-left: 10px;
+          background-color: #90ba3e;
+          border: 1px solid #90ba3e;
+          border-radius: 0;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        #cart-discount-close {
+          position: absolute;
+          left: 100%;
+          top: -10px;
+          cursor: pointer;
+          color: #666;
+          padding: 10px;
+        }
+
+        .error {
+          display: none;
+          color: #f16460;
+          margin: 0px;
+          font-weight: 500;
+          padding-top: 10px;
+          font-size: 12px;
+          font-style: italic;
+        }
+      }
+    }
+
+    .cart-checkout {
+      margin-top: 20px;
+      position: relative;
+
+      .submit-load-more {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background-color: #90ba3e;
+        z-index: -1;
+        transition: all, 0.4s, ease;
+
+        .load-more {
+          display: block;
+          width: 100%;
+          height: 50px;
+          position: absolute;
+          top: -8px;
+          .lds-spinner {
+            display: inline-block;
+            position: relative;
+            width: 50px;
+            height: 100%;
+            div {
+              transform-origin: 32px 32px;
+              animation: lds-spinner 1.2s linear infinite;
+              &:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 16px;
+                left: 30px;
+                width: 4px;
+                height: 8px;
+                border-radius: 20%;
+                background: #fff;
+              }
+              &:nth-child(1) {
+                transform: rotate(0deg);
+                animation-delay: -1.1s;
+              }
+              &:nth-child(2) {
+                transform: rotate(30deg);
+                animation-delay: -1s;
+              }
+              &:nth-child(3) {
+                transform: rotate(60deg);
+                animation-delay: -0.9s;
+              }
+              &:nth-child(4) {
+                transform: rotate(90deg);
+                animation-delay: -0.8s;
+              }
+              &:nth-child(5) {
+                transform: rotate(120deg);
+                animation-delay: -0.7s;
+              }
+              &:nth-child(6) {
+                transform: rotate(150deg);
+                animation-delay: -0.6s;
+              }
+              &:nth-child(7) {
+                transform: rotate(180deg);
+                animation-delay: -0.5s;
+              }
+              &:nth-child(8) {
+                transform: rotate(210deg);
+                animation-delay: -0.4s;
+              }
+              &:nth-child(9) {
+                transform: rotate(240deg);
+                animation-delay: -0.3s;
+              }
+              &:nth-child(10) {
+                transform: rotate(270deg);
+                animation-delay: -0.2s;
+              }
+              &:nth-child(11) {
+                transform: rotate(300deg);
+                animation-delay: -0.1s;
+              }
+              &:nth-child(12) {
+                transform: rotate(330deg);
+                animation-delay: 0s;
+              }
+            }
+          }
+        }
+      }
+
+      #btn-checkout {
+        display: block;
+        width: 100%;
+        padding: 14px 0;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        color: #fff;
+        background-color: #90ba3e;
+        text-shadow: 0 0 2px rgb(0 0 0 / 28%);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      &.mb-disable {
+        opacity: 0.5;
+
+        #btn-checkout {
+          pointer-events: none;
+        }
+      }
+    }
+
+    .cart-error {
+      display: none;
+      color: #f16460;
+      margin: 0px;
+      font-weight: 500;
+      padding-top: 10px;
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    .message-error {
+      display: none;
+
+      a.mb-auto-reload {
+        color: #f16460;
+        margin: 0px;
+        font-weight: 500;
+        padding-top: 10px;
+        font-size: 16px;
+        font-style: italic;
+      }
+    }
+
+    @media only screen and (max-width: 991px) {
+      flex: 0 0 100%;
+    }
+  }
+}

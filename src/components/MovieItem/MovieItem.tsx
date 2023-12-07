@@ -1,13 +1,11 @@
+import { Link } from "react-router-dom"
 import "./MovieItem.scss"
 interface MovieItemProps {
   handleMovieBooking?: any
 }
 const MovieItem = ({ handleMovieBooking }: MovieItemProps) => {
   return (
-    <div
-      className="mb-movie-item item-template1"
-      onClick={() => handleMovieBooking()}
-    >
+    <div className="mb-movie-item item-template1">
       <a title="The Fifth Day">
         <div className="movie-image">
           <img
@@ -34,11 +32,15 @@ const MovieItem = ({ handleMovieBooking }: MovieItemProps) => {
           <span className="running-time">180 Mins</span>
         </div>
 
-        <a href="/" title="The Fifth Day">
+        <Link to={"/movie"}>
           <h3 className="movie-title">The Fifth Day </h3>
-        </a>
+        </Link>
 
-        <button className="btn btn-booking" data-movie-id="4311">
+        <button
+          className="btn btn-booking"
+          data-movie-id="4311"
+          onClick={() => handleMovieBooking()}
+        >
           Get Ticket{" "}
         </button>
       </div>

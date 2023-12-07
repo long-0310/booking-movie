@@ -1,23 +1,22 @@
+import { useState } from "react"
 import Button from "../../components/Button"
+import HeroImg from "../../components/HeroImg/HeroImg"
 import LineMovie from "../../components/LineMovie"
 import MovieItem from "../../components/MovieItem/MovieItem"
+import MoviePopup from "../../components/MoviePopup"
 import "./MovieDetail.scss"
 
 type Props = {}
 
 const MovieDetail = (props: Props) => {
+  const [isBookingPopup, setIsBookingPopup] = useState(false)
+
+  const handleBookingPopup = () => {
+    setIsBookingPopup(!isBookingPopup)
+  }
   return (
     <div className="movie-detail">
-      <div className="movie-detail-hero">
-        <div className="movie-detail-background-overlay"></div>
-        <div className="movie-detail-container">
-          <div className="cover_color"></div>
-          <div className="header_banner_el">
-            <h1 className=" header_title">Wrong Turns Part 2 </h1>
-            <span>John Doe - 12 Thursday</span>
-          </div>
-        </div>
-      </div>
+      <HeroImg />
       <LineMovie />
       <div className="ova_movie_single">
         <div className="top-content">
@@ -32,7 +31,7 @@ const MovieDetail = (props: Props) => {
             </div>
           </div>
           <button className="btn btn-booking" data-movie-id={842}>
-            <Button label="Booking" />
+            <Button label="Booking" onClick={handleBookingPopup} />
           </button>
         </div>
         <div className="movie-media has-trailer">
@@ -243,6 +242,7 @@ const MovieDetail = (props: Props) => {
           </div>
         </div>
       </div>
+      {isBookingPopup && <MoviePopup setShowOption={setIsBookingPopup} />}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import "./MoviePopup.scss"
 import useClickOutside from "../../hook/useClickOutside"
+import { useNavigate } from "react-router-dom"
 
 interface MoviePopupI {
   setShowOption: React.Dispatch<React.SetStateAction<boolean>>
@@ -8,7 +9,7 @@ interface MoviePopupI {
 
 const MoviePopup = ({ setShowOption }: MoviePopupI) => {
   const ref = useRef<HTMLDivElement>()
-
+  const navigate = useNavigate()
   useClickOutside(ref, () => {
     setShowOption(false)
   })
@@ -18,6 +19,7 @@ const MoviePopup = ({ setShowOption }: MoviePopupI) => {
       id="mb_booking_popup"
       className="mb_booking_popup"
       style={{ display: "block" }}
+      onClick={() => navigate("/movie-booking")}
     >
       <div
         className="mb-bp-container"

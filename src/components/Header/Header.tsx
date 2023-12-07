@@ -22,7 +22,7 @@ const Header = () => {
     },
     {
       label: "Movies",
-      to: "/dang-nhap",
+      to: "/movies",
       id: 2,
       //   isView: authUser.role !== "User",
     },

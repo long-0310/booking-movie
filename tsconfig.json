@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
@@ -9,12 +8,14 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["testing-library__jest-dom"],
+    "target": "es6",
+    "removeComments": false,
     "jsx": "react-jsx",
-    "types": ["testing-library__jest-dom"]
+    "moduleResolution": "node"
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
