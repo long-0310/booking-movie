@@ -5,17 +5,21 @@
   .bookTicketMovie--screen img {
     width: 100%;
   }
+  .bookTicketMovie--box {
+    padding: 20px 50px 50px 50px;
+  }
   .bookTicketMovie--seats {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 50px 50px 50px;
+    gap: 4px;
   }
   .bookTicketMovie--seat {
     color: #3f464b;
     font-size: 23px;
     max-width: 6% !important;
     width: 6% !important;
+    margin-bottom: 8px;
   }
   .bookTicketMovie--seat i {
     cursor: pointer;
@@ -39,7 +43,8 @@
   .bookTicketMovie--tutorial-active {
     color: var(--primary);
   }
-  .bookTicketMovie--tutorials.row {
+  .bookTicketMovie--tutorials {
+    justify-content: center;
   }
   .bookTicketMovie--tutorial {
     display: flex;

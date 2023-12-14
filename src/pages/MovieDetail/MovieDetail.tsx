@@ -1,83 +1,103 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { formatDate } from "../../common/untils"
 import Button from "../../components/Button"
 import HeroImg from "../../components/HeroImg/HeroImg"
 import LineMovie from "../../components/LineMovie"
 import MovieItem from "../../components/MovieItem/MovieItem"
-import MoviePopup from "../../components/MoviePopup"
+import MovieTrailerPopup from "../../components/MovieTrailerPopup"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import {
+  getAllMovie,
+  getDetailMovie,
+  movieReducer,
+} from "../../redux/slice/Movie/Movie"
 import "./MovieDetail.scss"
+import MoviePopup from "../../components/MoviePopup"
 
 type Props = {}
 
 const MovieDetail = (props: Props) => {
-  const [isBookingPopup, setIsBookingPopup] = useState(false)
-
-  const handleBookingPopup = () => {
-    setIsBookingPopup(!isBookingPopup)
+  const initial = {
+    pageNumber: 1,
+    pageSize: 10,
   }
+  const params = useParams()
+  const dispatch = useAppDispatch()
+  const [isBookingPopup, setIsBookingPopup] = useState(false)
+  const [isMovieTrailer, setMovieTrailer] = useState(false)
+  const [movieId, setMovieId] = useState("")
+  const navigate = useNavigate()
+  const { movieDetail, listMovie } = useAppSelector(movieReducer)
+  const handleBookingPopup = (movieDetail: any) => {
+    const isLoggedIn = !!localStorage.getItem("accessToken")
+    if (isLoggedIn) {
+      setIsBookingPopup(!isBookingPopup)
+      setMovieId(movieDetail.id)
+    } else {
+      navigate("/login")
+    }
+  }
+
+  const handleBookingPopupMovie = (id: any) => {
+    setIsBookingPopup(!isBookingPopup)
+    setMovieId(id)
+  }
+
+  const handleOpenTrailer = () => {
+    setMovieTrailer(!isMovieTrailer)
+  }
+
+  useEffect(() => {
+    dispatch(getDetailMovie({ movieId: params.id }))
+    dispatch(getAllMovie(initial))
+  }, [params.id])
+
   return (
     <div className="movie-detail">
-      <HeroImg />
+      <HeroImg
+        backgroundImageUrl={movieDetail.heroImage}
+        title={movieDetail.name}
+        time={formatDate(movieDetail.premiereDate)}
+        director={movieDetail.director}
+      />
       <LineMovie />
       <div className="ova_movie_single">
         <div className="top-content">
           <div className="movie-heading">
-            <h1 className="movie-title">Wrong Turns Part 2</h1>
+            <h1 className="movie-title">{movieDetail.name}</h1>
             <div className="categories-and-time">
               <div className="movie-category">
-                <a title="Thriller">Thriller</a>{" "}
+                <a title="Thriller">{movieDetail.movieTypeName}</a>{" "}
               </div>
               <div className="separator">/</div>
-              <span className="running-time">180 Mins</span>
+              <span className="running-time">
+                {movieDetail.movieDuration} phút
+              </span>
             </div>
           </div>
           <button className="btn btn-booking" data-movie-id={842}>
-            <Button label="Booking" onClick={handleBookingPopup} />
+            <Button
+              label="Đặt vé"
+              onClick={() => handleBookingPopup(movieDetail)}
+            />
           </button>
         </div>
         <div className="movie-media has-trailer">
-          <div className="movie-gallery gallery_blur">
-            <a
-              className="gallery-fancybox"
-              data-fancybox="movie-gallery-fancybox"
-              data-caption="Movie Gallery"
-            >
-              <img
-                src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/sub-movie-image-01.jpg"
-                alt="Movie Gallery"
-                title="Movie Gallery"
-              />
-              <div className="blur-bg"></div>
-            </a>
-          </div>
-          <div className="movie-gallery gallery_hidden">
-            <a
-              className="gallery-fancybox"
-              data-src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/sub-movie-image-02.jpg"
-              data-fancybox="movie-gallery-fancybox"
-              data-caption="Movie Gallery"
-            >
-              <img
-                src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/sub-movie-image-02.jpg"
-                alt="Movie Gallery"
-                title="Movie Gallery"
-              />
-            </a>
-          </div>
           {/* Featured image */}
           <div className="movie-featured-image">
-            <a
+            <p
               className="gallery-fancybox"
-              data-src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/movie-image-01.jpg"
               data-fancybox="movie-gallery-fancybox"
-              data-caption="Wrong Turns Part 2"
+              data-caption={movieDetail.name}
             >
-              <img
-                src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/movie-image-01.jpg"
-                alt="Wrong Turns Part 2"
-              />
-            </a>
-            {/* Button Watch trailer video in single */}
-            <div className="btn-trailer-video-wrapper">
+              <img src={movieDetail.image} alt={movieDetail.name} />
+            </p>
+
+            <div
+              className="btn-trailer-video-wrapper"
+              onClick={handleOpenTrailer}
+            >
               <div
                 className="btn-video btn-trailer-video"
                 data-src="https://vimeo.com/252443587"
@@ -87,7 +107,7 @@ const MovieDetail = (props: Props) => {
               </div>
             </div>
             <span className="text-trailer">
-              Watch the Trailer{" "}
+              Xem Trailer
               <i
                 aria-hidden="true"
                 className="ovaicon ovaicon-diagonal-arrow"
@@ -97,152 +117,52 @@ const MovieDetail = (props: Props) => {
         </div>
         <ul className="info-list">
           <li className="item item-0">
-            <h4 className="title">Director:</h4>
-            <span className="value">Christine Eve </span>
+            <h4 className="title">Đạo diễn:</h4>
+            <span className="value">{movieDetail.director}</span>
           </li>
           <li className="item item-1">
-            <h4 className="title">Preimier:</h4>
-            <span className="value">12, March 2023 </span>
+            <h4 className="title">Thời lượng:</h4>
+            <span className="value">{movieDetail.movieDuration} phút</span>
           </li>
           <li className="item item-2">
-            <h4 className="title">Writer:</h4>
-            <span className="value">Aleesha Rose </span>
-          </li>
-          <li className="item item-3">
-            <h4 className="title">Time:</h4>
-            <span className="value">180 Mins </span>
-          </li>
-          <li className="item item-4">
-            <h4 className="title">Rating:</h4>
-            <span className="value">PG-13 </span>
+            <h4 className="title">Ngày công chiếu:</h4>
+            <span className="value">
+              {formatDate(movieDetail.premiereDate)}
+            </span>
           </li>
         </ul>
-        <div className="movie-cast">
-          <h2 className="movie-title-h2 cast-title">Top Cast</h2>
-          <div className="mb-movie-cast-list four_column">
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-01.jpg"
-                  alt="Millie Brown"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Millie Brown</h4>
-                <p className="cast-description">as Eleven </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-02.jpg"
-                  alt="Finn Wolfhard"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Finn Wolfhard</h4>
-                <p className="cast-description">as Mike Wheeler </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-03.jpg"
-                  alt="Winona Ryder"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Winona Ryder</h4>
-                <p className="cast-description">as Joyce Byers </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-04.jpg"
-                  alt="David Harbour"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">David Harbour</h4>
-                <p className="cast-description">as Jim Hopper </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-05.jpg"
-                  alt="Gaten Matarazo"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Gaten Matarazo</h4>
-                <p className="cast-description">as Ted Wheeler </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-06.jpg"
-                  alt="Natalia Dyer"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Natalia Dyer</h4>
-                <p className="cast-description">as Nancy Wheeler </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-07.jpg"
-                  alt="Caleb Laughlin"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Caleb Laughlin</h4>
-                <p className="cast-description">as Lucas Sinclair </p>
-              </div>
-            </div>
-            <div className="movie-cast-item">
-              <div className="cast-thumbnail">
-                <img
-                  src="https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/cast-08.jpg"
-                  alt="Sadie Sink"
-                />
-              </div>
-              <div className="cast-info">
-                <h4 className="cast-name">Sadie Sink</h4>
-                <p className="cast-description">as Max Mayfield </p>
-              </div>
-            </div>
-          </div>{" "}
-        </div>
+
         <div className="main-content">
-          <h2 className="movie-title-h2 story-title">Story Line</h2>
-          <p>
-            In a small town where everyone knows everyone, a peculiar incident
-            starts a chain of events that leads to a child’s disappearance,
-            which begins to tear at the fabric of an otherwise-peaceful
-            community. Dark government agencies and seemingly malevolent
-            supernatural forces converge on the town, while a few of the locals
-            begin to understand that more is going on than meets the eye.
-          </p>
+          <h2 className="movie-title-h2 story-title">Nội dung phim</h2>
+          <p>{movieDetail.description}</p>
         </div>
         <div className="movie-related">
-          <h2 className="movie-title-h2 related-title">
-            More Movies Like This
-          </h2>
+          <h2 className="movie-title-h2 related-title">Có thể bạn sẽ thích</h2>
           <div className="row">
-            {[1, 2, 3, 4].map((item) => (
+            {listMovie.slice(0, 4).map((item: any) => (
               <div className="col-md-12 col-lg-3">
-                <MovieItem />
+                <MovieItem
+                  handleMovieBooking={handleBookingPopupMovie}
+                  title={item.name}
+                  movieType={item.movieTypeName}
+                  image={item.image}
+                  duration={item.director}
+                  id={item.id}
+                />
               </div>
             ))}
           </div>
         </div>
       </div>
-      {isBookingPopup && <MoviePopup setShowOption={setIsBookingPopup} />}
+      {isBookingPopup && (
+        <MoviePopup idMovie={movieId} setShowOption={setIsBookingPopup} />
+      )}
+      {isMovieTrailer && (
+        <MovieTrailerPopup
+          trailerUrl={movieDetail.trailer}
+          setShowOption={setMovieTrailer}
+        />
+      )}
     </div>
   )
 }

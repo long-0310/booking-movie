@@ -4,239 +4,142 @@ import Screen from "../../assets/images/screen.png"
 import "./TicketChooSeat.scss"
 // import { clearSeats, getSeats } from "../../ticketRoomSlice"
 
-interface Seat {
-  maGhe: string
-  loaiGhe: string
-  daDat: boolean
-}
+const TicketChooseSeats = ({
+  listSeatByRoom,
+  setListChoose,
+  listChoose,
+}: any) => {
+  const [listSeat, setListSeat] = useState([])
+  // const [listChoose, setListChoose] = useState<any>({})
+  // const [listChoose, setListChoose] = useState<any>([])
 
-interface TicketChooseSeatsProps {
-  seats?: Seat[]
-}
+  // const handleChooseSeat = (selectedSeat: any) => {
+  //   if (listChoose && listChoose?.id === selectedSeat.id) {
+  //     setListChoose(null)
+  //     const updatedData = listSeat.map((item: any) => {
+  //       if (item.line !== selectedSeat.line) return item
 
-const TicketChooseSeats: FC<TicketChooseSeatsProps> = ({ seats }) => {
-  const dispatch = useDispatch()
-  const [fakeData, setFakeData] = useState([
-    {
-      maGhe: "G01",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G02",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G03",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G04",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G05",
-      loaiGhe: "Vip",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G06",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G07",
-      loaiGhe: "Vip",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G08",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G09",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G10",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G11",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G12",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G13",
-      loaiGhe: "Vip",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G14",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G15",
-      loaiGhe: "Vip",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G16",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G17",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G18",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G19",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G20",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G21",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G22",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G23",
-      loaiGhe: "Vip",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G24",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G25",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G26",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G27",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G28",
-      loaiGhe: "Normal",
-      daDat: true,
-      isChoise: false,
-    },
-    {
-      maGhe: "G29",
-      loaiGhe: "Vip",
-      daDat: false,
-      isChoise: false,
-    },
-    {
-      maGhe: "G30",
-      loaiGhe: "Normal",
-      daDat: false,
-      isChoise: false,
-    },
-  ])
+  //       const updatedListSeat = item.listSeat.map((seat: any) =>
+  //         seat.id === selectedSeat.id
+  //           ? {
+  //               ...seat,
+  //               seatStatusName:
+  //                 seat.seatStatusName.toUpperCase() === "CÒN TRỐNG"
+  //                   ? "Đã Chọn"
+  //                   : "CÒN TRỐNG",
+  //             }
+  //           : seat,
+  //       )
 
-  // useEffect(() => {
-  //   const action = clearSeats({
-  //     bookingSeat: [],
-  //     totalPrice: 0,
-  //     totalPriceSeat: 0,
-  //     totalPriceCombo: 0,
-  //   })
-  //   dispatch(action)
-  // }, [seats])
+  //       return {
+  //         ...item,
+  //         listSeat: updatedListSeat,
+  //       }
+  //     }) as any
+  //     setListSeat(updatedData)
+  //   } else {
+  //     setListChoose(selectedSeat)
+  //     const deselectedData = listSeat.map((item: any) => ({
+  //       ...item,
+  //       listSeat: item.listSeat.map((seat: any) => ({
+  //         ...seat,
+  //         seatStatusName: "CÒN TRỐNG",
+  //       })),
+  //     })) as any
+
+  //     const updatedData = deselectedData.map((item: any) => {
+  //       if (item.line !== selectedSeat.line) return item
+
+  //       const updatedListSeat = item.listSeat.map((seat: any) =>
+  //         seat.id === selectedSeat.id
+  //           ? {
+  //               ...seat,
+  //               seatStatusName:
+  //                 seat.seatStatusName.toUpperCase() === "CÒN TRỐNG"
+  //                   ? "Đã Chọn"
+  //                   : "CÒN TRỐNG",
+  //             }
+  //           : seat,
+  //       )
+
+  //       return {
+  //         ...item,
+  //         listSeat: updatedListSeat,
+  //       }
+  //     }) as any
+
+  //     setListSeat(updatedData)
+  //   }
+  // }
 
   const handleChooseSeat = (selectedSeat: any) => {
-    if (!selectedSeat.daDat) {
-      setFakeData((prevData) =>
-        prevData.map((seat) => {
-          if (seat.maGhe === selectedSeat.maGhe) {
-            return { ...seat, isChoise: !seat.isChoise }
-          }
-          return seat
-        }),
+    const isExist = listChoose.some((item: any) => item.id === selectedSeat.id)
+    if (isExist) {
+      setListChoose(
+        listChoose.filter((item: any) => item.id !== selectedSeat.id),
       )
+    } else {
+      setListChoose([...listChoose, selectedSeat])
     }
+
+    const newData = listSeat.map((item: any) => {
+      if (item.line !== selectedSeat.line) return item
+
+      const updatedListSeat = item.listSeat.map((seat: any) =>
+        seat.id === selectedSeat.id
+          ? {
+              ...seat,
+              seatStatusName:
+                seat.seatStatusName.toUpperCase() === "CÒN TRỐNG"
+                  ? "Đã Chọn"
+                  : "CÒN TRỐNG",
+            }
+          : seat,
+      )
+
+      return {
+        ...item,
+        listSeat: updatedListSeat,
+      }
+    }) as any
+    setListSeat(newData)
   }
+
+  useEffect(() => {
+    if (listSeatByRoom) {
+      const newData = listSeatByRoom.reduce((acc: any, item: any) => {
+        const lineSeat = acc.find((seat: any) => seat.line === item.line)
+        if (lineSeat) {
+          lineSeat.listSeat.push(item)
+        } else {
+          acc.push({ line: item.line, listSeat: [item] })
+        }
+        return acc
+      }, [])
+
+      setListSeat(newData)
+    }
+  }, [listSeatByRoom])
 
   return (
     <div className="bookingSeat">
       <div className="bookTicketMovie--screen">
         <img src={Screen} alt="" />
       </div>
-      <div className="bookTicketMovie--seats row">
-        {(fakeData || []).map((seat, index) => (
-          <div
-            key={seat.maGhe}
-            className={`bookTicketMovie--seat col-md-1 col-lg-1 ${
-              seat.loaiGhe === "Vip" ? "vip" : ""
-            } ${seat.daDat ? "sold" : ""} ${seat.isChoise ? "is-choice" : ""}`}
-            onClick={() => handleChooseSeat(seat)}
-          >
-            <i className="fas fa-couch" />
+      <div className="bookTicketMovie--box">
+        {listSeat.map((line: any) => (
+          <div className="bookTicketMovie--seats row">
+            {line?.listSeat?.map((seat: any, idx: number) => (
+              <div
+                key={idx}
+                className={`bookTicketMovie--seat col-md-1 col-lg-1   ${
+                  seat.seatStatusName === "Đã Chọn" ? "is-choice" : ""
+                }`}
+                onClick={() => handleChooseSeat(seat)}
+              >
+                <i className="fas fa-couch" />
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -244,10 +147,6 @@ const TicketChooseSeats: FC<TicketChooseSeatsProps> = ({ seats }) => {
         <div className="bookTicketMovie--tutorial bookTicketMovie--tutorial-normal col-md-3 col-lg-3">
           <i className="fas fa-couch" />
           <div className="bookTicketMovie--tutorial__text">Ghế Trống</div>
-        </div>
-        <div className="bookTicketMovie--tutorial bookTicketMovie--tutorial-vip col-md-3 col-lg-3">
-          <i className="fas fa-couch" />
-          <div className="bookTicketMovie--tutorial__text">Ghế Vip</div>
         </div>
         <div className="bookTicketMovie--tutorial bookTicketMovie--tutorial-active col-md-3 col-lg-3">
           <i className="fas fa-couch" />

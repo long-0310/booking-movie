@@ -12,35 +12,39 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  overflow-y: scroll;
   .account-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    height: 100%;
     @include x-small {
       flex-direction: column;
     }
     .account-box {
-      padding: 20px 0;
-
+      display: flex;
+      justify-items: center;
+      align-items: center;
       .account-container {
         width: 100%;
-        padding: 0 15px;
+        padding: 20px 15px;
         margin: 0 auto;
 
         .account-content {
           color: white;
-          background-color: rgba(0, 0, 0, 0.9);
-          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
           margin: 0 auto;
           overflow: hidden;
           width: 480px;
+          height: 100%;
           @include x-small {
             width: 100%;
             margin-bottom: 20px;
           }
           .content-inside {
             padding: 30px;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
             @include x-small {
               padding: 30px 16px;
             }

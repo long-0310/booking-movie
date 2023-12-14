@@ -92,12 +92,18 @@
       justify-content: flex-end;
       color: white;
       transition: all 0.2s;
+      cursor: pointer;
     }
     .nav-right > div:first-child {
       margin-right: 18px;
     }
-    .nav-right > div:hover {
-      color: #d96c2c;
+    .nav-right {
+      i {
+        transition: all 0.2s;
+      }
+      i:hover {
+        color: #d96c2c;
+      }
     }
     .mobile-nav {
       height: 25px;

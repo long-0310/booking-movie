@@ -1,13 +1,16 @@
-import Sidebar from "../../components/Sidebar/Sidebar"
+import { useEffect, useState } from "react"
 import Slider from "react-slick"
-import "./HomePage.scss"
-import LineMovie from "../../components/LineMovie"
 import BoxIcon from "../../components/BoxIcon/BoxIcon"
-import MovieItem from "../../components/MovieItem/MovieItem"
-import HeadingContent from "../../components/HeadingContent/HeadingContent"
 import Button from "../../components/Button"
+import HeadingContent from "../../components/HeadingContent/HeadingContent"
+import LineMovie from "../../components/LineMovie"
+import MovieItem from "../../components/MovieItem/MovieItem"
 import MoviePopup from "../../components/MoviePopup"
-import { useState } from "react"
+import Sidebar from "../../components/Sidebar/Sidebar"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getAllMovie, movieReducer } from "../../redux/slice/Movie/Movie"
+import "./HomePage.scss"
+import { Navigate, useNavigate } from "react-router-dom"
 
 const settingSlickFilm = {
   dots: true,
@@ -40,42 +43,18 @@ const settingSlickFilm = {
   ],
 }
 
-const dataSlice = [
-  {
-    name: "Wrong Turn Part 2",
-    imageUrl:
-      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner.jpg",
-    category: "Thriller Movie",
-    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-  },
-  {
-    name: "The Witcher Session 2",
-    imageUrl:
-      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/02/banner-02.jpg",
-    category: "Action Movie",
-    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-  },
-  {
-    name: "Love Nightmare",
-    imageUrl:
-      "https://demo.ovatheme.com/aovis/wp-content/uploads/2023/03/banner3.jpg",
-    category: "Action Movie",
-    description: " Writen and Directed by Aleesha Rose / Ireland 2023",
-  },
-]
-
 const dataIconBox = [
   {
-    title: "Upcoming Film Festivals",
-    subTitle: "Join Now",
+    title: "Liên hoan phim",
+    subTitle: "Xem ngay",
   },
   {
-    title: "Watch Film Awards",
-    subTitle: "Watch Now",
+    title: "Xem giải thưởng phim",
+    subTitle: "Xem ngay",
   },
   {
-    title: "Comedy TV Shows",
-    subTitle: "Get Ticket",
+    title: "Chương trình truyền hình",
+    subTitle: "Nhận vé",
   },
 ]
 
@@ -91,25 +70,43 @@ const settingSlick = {
 }
 
 const HomePage = () => {
-  const [isBookingPopup, setIsBookingPopup] = useState(false)
-
-  const handleBookingPopup = () => {
-    setIsBookingPopup(!isBookingPopup)
+  const initial = {
+    pageNumber: 1,
+    pageSize: 10,
   }
+  const dispatch = useAppDispatch()
+  const [isBookingPopup, setIsBookingPopup] = useState(false)
+  const { listMovie } = useAppSelector(movieReducer)
+  const [movieId, setMovieId] = useState("")
+  const navigate = useNavigate()
+  const handleBookingPopup = (id: string) => {
+    const isLoggedIn = !!localStorage.getItem("accessToken")
+    if (isLoggedIn) {
+      setMovieId(id)
+      setIsBookingPopup(!isBookingPopup)
+    } else {
+      navigate("/login")
+    }
+  }
+
+  useEffect(() => {
+    dispatch(getAllMovie(initial))
+  }, [])
 
   return (
     <>
       <div className="main-home-page">
         <div className="slide-home-page">
           <Slider {...settingSlick}>
-            {dataSlice.map((item: any) => (
+            {listMovie.map((item: any) => (
               <div>
                 <Sidebar
-                  setShowOption={setIsBookingPopup}
+                  setShowOption={handleBookingPopup}
                   name={item.name}
-                  category={item.category}
-                  imageUrl={item.imageUrl}
-                  description={item.description}
+                  category={item.movieTypeName}
+                  imageUrl={item.heroImage}
+                  description={item.director}
+                  id={item.id}
                 />
               </div>
             ))}
@@ -129,15 +126,19 @@ const HomePage = () => {
           </div>
         </div>
         <div className="bottom-ticket-box">
-          <HeadingContent
-            subTitle="Watch New Movies"
-            title="Movies Now Playing"
-          />
+          <HeadingContent subTitle="Xem phim mới" title="Phim đang chiếu" />
           <div className="row">
             <div className="slick-movie-item">
               <Slider {...settingSlickFilm}>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                  <MovieItem handleMovieBooking={handleBookingPopup} />
+                {listMovie.map((item: any) => (
+                  <MovieItem
+                    handleMovieBooking={handleBookingPopup}
+                    title={item.name}
+                    movieType={item.movieTypeName}
+                    image={item.image}
+                    duration={item.director}
+                    id={item.id}
+                  />
                 ))}
               </Slider>
             </div>
@@ -150,14 +151,15 @@ const HomePage = () => {
               <div className="col-md-12  col-lg-6">
                 <div className="w-100">
                   <HeadingContent
-                    subTitle="Documentary"
-                    title="Life Under an Umbrella"
+                    subTitle="Phim Tài Liệu"
+                    title="Cuộc Sống Dưới Chiếc Ô"
                     leftContent
                     textColor
                   />
                   <p className="documentary-description">
-                    Phasellus non cursus ligula, sed mattis urna. Aenean ac tor
-                    gravida, volutpat quam eget, consequat elit.
+                    Những chiếc ô không thể ngăn cơn mưa nhưng nó giúp ta đứng
+                    được dưới mưa. Sự tự tin có thể không mang lại thành công
+                    nhưng nó mang đến...
                   </p>
                   <div className="documentary-award-box">
                     <div className="documentary-award">
@@ -182,7 +184,7 @@ const HomePage = () => {
                     </div>
                   </div>
                   <div className="documentary-award-btn">
-                    <Button label="More Info" largeBtn secondBtn />
+                    <Button label="Thêm thông tin" largeBtn secondBtn />
                   </div>
                 </div>
               </div>
@@ -191,7 +193,7 @@ const HomePage = () => {
                   <div className="documentary-video">
                     <div className="documentary-video-container">
                       <div className="documentary-ova-video">
-                        <div className="text">Watch the Trailer </div>
+                        <div className="text">Xem trailer</div>
 
                         <div className="icon-content-view video_active">
                           <div className="audio_content">
@@ -237,12 +239,12 @@ const HomePage = () => {
               <div className="ticket-homepage-content">
                 <div className="ticket-homepage-overlay"></div>
                 <div className="ticket-homepage-title">
-                  40% Discount for Students
+                  Giảm giá 40% cho học sinh
                 </div>
 
                 <div className="ticket-homepage-btn">
                   <Button
-                    label="Book Your Ticket"
+                    label="Đặt vé ngay"
                     blackBtn
                     type="submit"
                     secondBtn
@@ -253,7 +255,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {isBookingPopup && <MoviePopup setShowOption={setIsBookingPopup} />}
+      {isBookingPopup && (
+        <MoviePopup idMovie={movieId} setShowOption={setIsBookingPopup} />
+      )}
     </>
   )
 }

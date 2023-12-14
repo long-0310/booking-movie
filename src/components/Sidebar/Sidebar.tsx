@@ -6,14 +6,16 @@ type SlideProps = {
   imageUrl: string
   category: string
   name: string
-  setShowOption?: React.Dispatch<React.SetStateAction<boolean>>
+  setShowOption?: any
   description: string
+  id: number
 }
 const Sidebar = ({
   imageUrl,
   category,
   name,
   description,
+  id,
   setShowOption,
 }: SlideProps) => {
   const cx = classNames.bind(styles)
@@ -23,11 +25,11 @@ const Sidebar = ({
         <img src={imageUrl} alt="" />
       </div>
       <div className={cx("box-container")}>
+        <div className={cx("movie-release")}>
+          <span className={cx("text")}>In theater</span>
+          <h3 className={cx("time")}>March 2023</h3>
+        </div>
         <div className={cx("box-container-inside")}>
-          <div className={cx("movie-release")}>
-            <span className={cx("text")}>In theater</span>
-            <h3 className={cx("time")}>March 2023</h3>
-          </div>
           <div className={cx("movie-main-item")}>
             <div className={cx("movie-heading")}>
               <h3 className={cx("movie-category")}>{category}</h3>
@@ -35,18 +37,18 @@ const Sidebar = ({
                 <h1 className={cx("movie-title")}>{name}</h1>
               </Link>
             </div>
-            <p className={cx("movie-excerpt")}>{description}</p>
+            <p className={cx("movie-excerpt")}>Đạo diễn bởi {description}</p>
             <div className={cx("button-wrapper")}>
               <div className={cx("left-button")}>
-                <Link to="/movie">
-                  <Button largeBtn secondBtn label="Information" />
+                <Link to={`/movie/${id}`}>
+                  <Button largeBtn secondBtn label="Thông tin" />
                 </Link>
               </div>
               <div
                 className={cx("left-button")}
-                onClick={() => setShowOption && setShowOption(true)}
+                onClick={() => setShowOption(id)}
               >
-                <Button largeBtn primaryBtn label="Get Ticket" />
+                <Button largeBtn primaryBtn label="Mua vé" />
               </div>
             </div>
           </div>

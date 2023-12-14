@@ -1,24 +1,25 @@
-import { useEffect } from "react"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 
-import { useAppDispatch } from "./app/hooks"
 import Protected from "./components/Protected"
+import ConfirmCode from "./pages/Authen/ConfirmCode"
 import ForgotPassword from "./pages/Authen/ForgotPassword"
 import Login from "./pages/Authen/Login"
 import Register from "./pages/Authen/Register"
-import PrivateRoute from "./router/PrivateRoute"
+import { useAppDispatch } from "./redux/hooks"
+// import { resetAuthUserState } from "./redux/slice/Login/Login"
 
 function App() {
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    const storedAuthUser = localStorage.getItem("authUser")
-    if (storedAuthUser) {
-      const authUser = JSON.parse(storedAuthUser)
-      // dispatch(resetAuthUserState(authUser))
-    }
-  }, [])
+  // useEffect(() => {
+  //   const storedAuthUser = localStorage.getItem("accessToken")
+  //   console.log(storedAuthUser)
+  //   if (storedAuthUser) {
+  //     dispatch(resetAuthUserState(storedAuthUser))
+  //   }
+  // }, [])
+
   return (
     <>
       <Router>
@@ -26,15 +27,15 @@ function App() {
           <Route
             path="/*"
             element={
-              <PrivateRoute>
-                <Protected />
-              </PrivateRoute>
+              // <PrivateRoute>
+              <Protected />
+              // </PrivateRoute>
             }
           />
-          {/* <Route path="/*" element={<Protected />} /> */}
-          <Route path="/dang-nhap" element={<Login />} />
-          <Route path="/quen-mat-khau" element={<ForgotPassword />} />
-          <Route path="/dang-ki" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/confirm-code" element={<ConfirmCode />} />
         </Routes>
       </Router>
       <ToastContainer
