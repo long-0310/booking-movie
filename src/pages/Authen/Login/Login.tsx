@@ -1,18 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames/bind"
-import React, { Suspense } from "react"
+import React, { Suspense, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import * as yup from "yup"
 import Button from "../../../components/Button"
 import Input from "../../../components/Input"
 import styles from "./Login.module.scss"
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import { getLoginUser, loginReducer } from "../../../redux/slice/Login/Login"
 
 const SignupSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Email không hợp lệ")
-    .required("Vui lòng nhập email"),
+  userName: yup.string().required("Vui lòng nhập tên người dùng"),
   password: yup
     .string()
     .required("Vui lòng nhập mật khẩu")
@@ -23,8 +22,9 @@ const SignupSchema = yup.object().shape({
 })
 
 const cx = classNames.bind(styles)
-
 const Login: React.FC = () => {
+  const { accessToken } = useAppSelector(loginReducer)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const {
@@ -36,13 +36,14 @@ const Login: React.FC = () => {
   })
 
   const onSubmit = (data: any) => {
-    const randomString =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-
-    localStorage.setItem("accessToken", randomString)
-    navigate("/")
+    dispatch(getLoginUser(data))
   }
+
+  useEffect(() => {
+    if (accessToken) {
+      navigate("/")
+    }
+  }, [accessToken])
 
   return (
     <div className={cx("account-page")}>
@@ -59,9 +60,9 @@ const Login: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={cx("label")}>
                     <Input
-                      label="Email"
+                      label="Tên người dùng"
                       register={register}
-                      name="email"
+                      name="userName"
                       errors={errors}
                     />
                   </div>
@@ -78,12 +79,12 @@ const Login: React.FC = () => {
                   <div className={cx("label")}>
                     <div className={cx("account-password")}>
                       <Link
-                        to={"/quen-mat-khau"}
+                        to={"/forgot-password"}
                         className={cx("forgot-password")}
                       >
                         Quên mật khẩu ?
                       </Link>
-                      <Link to={"/dang-ki"} className={cx("forgot-password")}>
+                      <Link to={"/register"} className={cx("forgot-password")}>
                         Đăng kí ?
                       </Link>
                     </div>

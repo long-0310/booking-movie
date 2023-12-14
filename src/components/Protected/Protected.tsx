@@ -7,6 +7,8 @@ import Movies from "../../pages/Movies/Movies"
 import Footer from "../Footer"
 import Header from "../Header"
 import styles from "./Protected.module.scss"
+import Discount from "../../pages/Discount/Discount"
+import Profile from "../../pages/Profile/Profile"
 
 const Protected = () => {
   const cx = classNames.bind(styles)
@@ -18,18 +20,38 @@ const Protected = () => {
       isView: true,
     },
     {
-      path: "/movie",
+      path: "/movie/:id",
       component: <MovieDetail />,
       isView: true,
     },
     {
-      path: "/movie-booking",
+      path: "/movie-booking/:id",
       component: <Booking />,
       isView: true,
     },
     {
       path: "/movies",
       component: <Movies />,
+      isView: true,
+    },
+    {
+      path: "/khuyen-mai",
+      component: <Discount />,
+      isView: true,
+    },
+    {
+      path: "/lien-he",
+      component: <Discount />,
+      isView: true,
+    },
+    {
+      path: "/tap-chi",
+      component: <Discount />,
+      isView: true,
+    },
+    {
+      path: "/thong-tin-cua-toi",
+      component: <Profile />,
       isView: true,
     },
   ]

@@ -1,14 +1,29 @@
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames/bind"
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import * as yup from "yup"
 import Button from "../../../components/Button"
 import Input from "../../../components/Input"
 import styles from "./Register.module.scss"
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
+import {
+  loginReducer,
+  registerUser,
+  resetRegisterSuccess,
+} from "../../../redux/slice/Login/Login"
 
-const SignupSchema = yup.object().shape({
+const SignUpSchema = yup.object().shape({
+  userName: yup.string().required("Vui lòng nhập tên người dùng"),
+  name: yup.string().required("Vui lòng nhập tên"),
+  phoneNumber: yup
+    .string()
+    .required("Vui lòng nhập mật khẩu")
+    .matches(
+      /([+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/,
+      "Số điện thoại không hợp lệ",
+    ),
   email: yup
     .string()
     .email("Email không hợp lệ")
@@ -20,6 +35,7 @@ const SignupSchema = yup.object().shape({
       /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
       "Mật khẩu phải có ít nhất 8 kí tự, bao gồm cả số chữ, ít nhất 1 chữ cái viết hoa và 1 kí tự đặc biệt",
     ),
+
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Mật khẩu xác nhận không khớp"),
@@ -27,28 +43,30 @@ const SignupSchema = yup.object().shape({
 const cx = classNames.bind(styles)
 const Register = () => {
   const navigate = useNavigate()
-
+  const dispatch = useAppDispatch()
+  const { registerSuccess } = useAppSelector(loginReducer)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(SignupSchema),
+    resolver: yupResolver(SignUpSchema),
   })
   const onSubmit = (data: any) => {
-    const randomString =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-
-    localStorage.setItem("accessToken", randomString)
-    navigate("/")
+    const form = { ...data }
+    delete form.confirmPassword
+    dispatch(registerUser(form))
   }
 
-  // useEffect(() => {
-  //   if (userLogin) {
-  //     navigate("/")
-  //   }
-  // }, [userLogin])
+  useEffect(() => {
+    if (registerSuccess) {
+      navigate("/confirm-code")
+    }
+    return () => {
+      dispatch(resetRegisterSuccess({}))
+    }
+  }, [registerSuccess])
+
   return (
     <div className={cx("account-page")}>
       <div className={cx("account-wrapper")}>
@@ -62,6 +80,30 @@ const Register = () => {
                   Đăng kí để tạo tài khoản cho riêng bạn
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className={cx("label")}>
+                    <Input
+                      label="Tên người dùng"
+                      register={register}
+                      name="userName"
+                      errors={errors}
+                    />
+                  </div>
+                  <div className={cx("label")}>
+                    <Input
+                      label="Họ và Tên"
+                      register={register}
+                      name="name"
+                      errors={errors}
+                    />
+                  </div>
+                  <div className={cx("label")}>
+                    <Input
+                      label="Số điện thoại"
+                      register={register}
+                      name="phoneNumber"
+                      errors={errors}
+                    />
+                  </div>
                   <div className={cx("label")}>
                     <Input
                       label="Email"
@@ -92,7 +134,7 @@ const Register = () => {
                   <div className={cx("label")}>
                     <div className={cx("account-password")}>
                       Đã có tài khoản ?&nbsp;
-                      <Link to={"/dang-nhap"} className={cx("forgot-password")}>
+                      <Link to={"/login"} className={cx("forgot-password")}>
                         {" "}
                         Đăng nhập
                       </Link>

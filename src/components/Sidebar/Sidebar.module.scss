@@ -26,6 +26,41 @@
     bottom: 0;
     right: 0;
     color: white;
+    .movie-release {
+      position: absolute;
+      right: 0px;
+      top: 20%;
+      right: 10%;
+      @media (max-width: 1180px) {
+        padding-right: 32px;
+      }
+      .text {
+        color: #fff;
+      }
+      .time {
+        position: relative;
+        margin: 0;
+        color: #fff;
+        font-size: 30px;
+        line-height: 1.2;
+        font-family: "Space Grotesk", sans-serif;
+        @media (max-width: 767px) {
+          font-size: 24px;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          left: -5px;
+          bottom: -10px;
+          width: 110%;
+          height: 15px;
+          background-image: url("../../assets//images/underline-heading-entire.png");
+          background-position: bottom;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+    }
     .box-container-inside {
       position: relative;
       max-width: 1190px;
@@ -34,40 +69,7 @@
       @media (max-width: 1180px) {
         padding: 0 16px;
       }
-      .movie-release {
-        position: absolute;
-        right: 0px;
-        bottom: 140%;
-        @media (max-width: 1180px) {
-          padding-right: 32px;
-        }
-        .text {
-          color: #fff;
-        }
-        .time {
-          position: relative;
-          margin: 0;
-          color: #fff;
-          font-size: 30px;
-          line-height: 1.2;
-          font-family: "Space Grotesk", sans-serif;
-          @media (max-width: 767px) {
-            font-size: 24px;
-          }
-          &:after {
-            content: "";
-            position: absolute;
-            left: -5px;
-            bottom: -10px;
-            width: 110%;
-            height: 15px;
-            background-image: url("../../assets//images/underline-heading-entire.png");
-            background-position: bottom;
-            background-repeat: no-repeat;
-            background-size: cover;
-          }
-        }
-      }
+
       .movie-main-item {
         position: relative;
         max-width: 650px;

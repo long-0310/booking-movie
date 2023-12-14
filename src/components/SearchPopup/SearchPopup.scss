@@ -1,0 +1,126 @@
+@import "../../scss/mixin";
+.ova_wrap_search_popup {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  .ova_search_close {
+    display: none;
+  }
+
+  &.show {
+    .ova_search_popup {
+      @include transaction(all, 0.5s, ease);
+      -webkit-transform: translateY(0%);
+      transform: translateY(0%);
+    }
+  }
+
+  i {
+    @include transaction(all, 0.3s, ease);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 24px;
+    color: var(--heading);
+
+    &:hover {
+      @include transaction(all, 0.3s, ease);
+      color: var(--primary);
+    }
+  }
+
+  .ova_search_popup {
+    @include transaction(all, 0.5s, ease);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translateY(-110%);
+    transform: translateY(-110%);
+
+    .search-popup__overlay {
+      @include transaction(all, 0.5s, ease);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--heading);
+      opacity: 0.75;
+      cursor: pointer;
+      z-index: -1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      @media (max-width: 600px) {
+        max-width: 300px;
+      }
+
+      .search-form {
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+        .search-field {
+          @include transaction(all, 0.3s, ease);
+          width: 100%;
+          background-color: #fff;
+          color: var(--heading);
+          font-weight: 500;
+          font-size: 16px;
+          border: none;
+          outline: none;
+          height: 66px;
+          padding-left: 30px;
+          transition: all 0.3s;
+          -webkit-border-radius: 0;
+          border-radius: 0;
+          &::placeholder {
+            opacity: 1;
+            color: var(--text);
+            font-weight: 500;
+          }
+          &::-webkit-search-cancel-button {
+            filter: invert(63%) sepia(43%) saturate(286%) hue-rotate(351deg)
+              brightness(93%) contrast(97%);
+            opacity: 1;
+            background-color: black;
+          }
+        }
+        .search-submit {
+          @include transaction(all, 0.3s, ease);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 0;
+          cursor: pointer;
+          border-radius: 0;
+          background-color: var(--primary);
+          i {
+            font-size: 32px;
+            color: #fff;
+            line-height: 1;
+            margin: 0;
+            padding: 0 16px;
+          }
+          &:hover {
+            @include transaction(all, 0.3s, ease);
+            background-color: var(--heading);
+          }
+        }
+      }
+    }
+  }
+}

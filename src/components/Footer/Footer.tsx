@@ -38,7 +38,7 @@ const Footer = (props: Props) => {
             </div>
             <div className={cx("top-right")}>
               <div className={cx("text-top")}>
-                <span>Help</span> / <span>Privacy Policy</span>
+                <span>Trợ giúp</span> / <span>Điều Khoản</span>
               </div>
               <div className={cx("right-list-icon")}>
                 <span>
@@ -60,59 +60,59 @@ const Footer = (props: Props) => {
             <div className={cx("footer-box-bottom-inside")}>
               <div className={cx("footer-box-fist")}>
                 <div className={cx("title")}>
-                  Buy movie tickets easily with Aovis system nationwide{" "}
+                  Mua vé xem phim dễ dàng với hệ thống Aovis trên toàn quốc
                 </div>
                 <div className={cx("btn-footer")}>
-                  <Button label="Get Your Ticket" primaryBtn />
+                  <Button label="Đặt vé ngay" primaryBtn />
                 </div>
               </div>
               <div className={cx("footer-box-second")}>
                 <div className={cx("top-title-footer")}>
-                  <h2>Movies</h2>
+                  <h2>Phim</h2>
                 </div>
                 <div className={cx("top-list-footer")}>
                   <ul>
                     <li>
-                      <a href=""> Action </a>
+                      <a href="">Hành động</a>
                     </li>
                     <li>
-                      <a href="">Adventure </a>
+                      <a href="">Phiêu lưu</a>
                     </li>
                     <li>
-                      <a href="">Animation </a>
+                      <a href="">Kì ảo</a>
                     </li>
                     <li>
-                      <a href="">Comedy </a>
+                      <a href="">Giật gân</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className={cx("footer-box-second")}>
                 <div className={cx("top-title-footer")}>
-                  <h2>Movies</h2>
+                  <h2>Thông tin</h2>
                 </div>
                 <div className={cx("top-list-footer")}>
                   <ul>
                     <li>
-                      <a href=""> Action </a>
+                      <a href="">Vè chúng tôi</a>
                     </li>
                     <li>
-                      <a href="">Adventure </a>
+                      <a href="">Tài khoản</a>
                     </li>
                     <li>
-                      <a href="">Animation </a>
+                      <a href="">Bài viết </a>
                     </li>
                     <li>
-                      <a href="">Comedy </a>
+                      <a href="">Liên hệ </a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className={cx("footer-box-end")}>
                 <div className={cx("top-title-footer")}>
-                  <h2>Newsletter</h2>
+                  <h2>Bản tin</h2>
                 </div>
-                <p>Subscribe to Leitmotif newsletter this very day</p>
+                <p>Đăng ký nhận bản tin Leitmotif ngay ngày hôm nay.</p>
                 <Input
                   placeholder="Send Email"
                   register={register}
